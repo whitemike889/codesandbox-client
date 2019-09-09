@@ -177,7 +177,10 @@ async function initialize() {
         const config = modules[1].config;
 
         overmind = createOvermind(config, {
-          devtools: true,
+          devtools:
+            window.opener && window.opener !== window && !window.chrome
+              ? false
+              : 'localhost:3031',
           name: 'CodeSandbox',
           logProxies: true,
         });
